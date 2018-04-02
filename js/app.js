@@ -17,7 +17,7 @@ class Enemy {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    dt = 20;
+    this.x = this.x + 1;
   }
 
   // Draw the enemy on the screen, required method for game
@@ -38,7 +38,7 @@ class Player {
   }
 
   update(dt) {
-    dt = 10;
+
   }
 
   render() {
@@ -60,10 +60,30 @@ class Player {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(1,1);
-const enemy2 = new Enemy(100,50);
-const enemy3 = new Enemy(300,150);
-const allEnemies = [enemy1, enemy2, enemy3];
+const enemy1 = new Enemy(100,1);
+const enemy2 = new Enemy(10,300);
+const enemy3 = new Enemy(50,400);
+let allEnemies = [enemy1, enemy2, enemy3];
+
+/*
+function moveEnemy() {
+  setInterval(function() {
+    enemy1.update(1);
+  }, 10000);
+}
+*/
+
+/*
+function moveEnemy() {
+  setInterval(function() {
+    enemy1.x = enemy1.x + 20;
+    enemy2.x = enemy2.x + 50;
+    enemy3.x = enemy3.x + 30;
+  }, 1000);
+}
+
+moveEnemy();
+*/
 
 // Place the player object in a variable called player
 const player = new Player(200,430);
@@ -80,4 +100,15 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+// checkCollisions
+document.addEventListener('keyup', function(e) {
+  allEnemies.forEach(function(enemy) {
+    let absX = Math.abs(enemy.x - player.x);
+    let absY = Math.abs(enemy.y - player.y);
+    if (absX < 20 && absY < 20) {
+      console.log('Collision!');
+    }
+  });
 });
