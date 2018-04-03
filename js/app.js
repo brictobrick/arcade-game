@@ -17,7 +17,7 @@ class Enemy {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + 1;
+    this.x = this.x + 2;
   }
 
   // Draw the enemy on the screen, required method for game
@@ -61,17 +61,26 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 const enemy1 = new Enemy(100,1);
-const enemy2 = new Enemy(10,300);
-const enemy3 = new Enemy(50,400);
-let allEnemies = [enemy1, enemy2, enemy3];
+const enemy2 = new Enemy(-150,50);
+const enemy3 = new Enemy(10,150);
+const enemy4 = new Enemy(-250,225);
+const enemy5 = new Enemy(50,300);
+const enemy6 = new Enemy(-350,300);
+let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
-/*
-function moveEnemy() {
+// Return Enemies' position to enemy.x = -150
+function returnPosition() {
   setInterval(function() {
-    enemy1.update(1);
-  }, 10000);
+    for (enemy of allEnemies) {
+      if (enemy.x >= 505) {
+        enemy.x = -150
+      }
+    }
+  }, 1000);
 }
-*/
+
+returnPosition();
+
 
 /*
 function moveEnemy() {
