@@ -112,7 +112,7 @@ document.addEventListener('keyup', function(e) {
 });
 
 // checkCollisions
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
   allEnemies.forEach(function(enemy) {
     let absX = Math.abs(enemy.x - player.x);
     let absY = Math.abs(enemy.y - player.y);
