@@ -102,13 +102,24 @@ document.addEventListener('keydown', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-// checkCollisions
+// Check Collisions
 document.addEventListener('keydown', function(e) {
+  e.preventDefault();
   allEnemies.forEach(function(enemy) {
     let absX = Math.abs(enemy.x - player.x);
     let absY = Math.abs(enemy.y - player.y);
     if (absX < 40 && absY < 40) {
-      console.log('Collision!');
+      alert('Collision! You lost the game!');
+      location.reload();
     }
   });
+});
+
+// Check if the player wins
+document.addEventListener('keydown', function(e) {
+  e.preventDefault();
+  if (player.y == -10) {
+    alert('Congratulations! You won!')
+    location.reload();
+  }
 });
