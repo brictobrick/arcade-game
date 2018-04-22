@@ -17,7 +17,7 @@ class Enemy {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + 2;
+    this.x = this.x * dt;
   }
 
   // Draw the enemy on the screen, required method for game
@@ -46,13 +46,13 @@ class Player {
   }
 
   handleInput(key) {
-    if(key == 'up') {
+    if(key == 'up' && this.y > 10) {
       this.y -= 20;
-    } else if (key == 'right') {
+    } else if (key == 'right' && this.x < 400) {
       this.x += 20;
-    } else if (key == 'down') {
+    } else if (key == 'down' && this.y < 420) {
       this.y += 20;
-    } else if (key == 'left') {
+    } else if (key == 'left' && this.x > 10) {
       this.x -= 20;
     }
   }
