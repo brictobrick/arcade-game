@@ -1,6 +1,6 @@
 // Enemies our player must avoid
 class Enemy {
-  constructor(x,y) {
+  constructor(x,y,s) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,6 +9,7 @@ class Enemy {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.s = s;
   }
 
   // Update the enemy's position, required method for game
@@ -17,7 +18,7 @@ class Enemy {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x * dt;
+    this.x = this.x + this.s + dt;
   }
 
   // Draw the enemy on the screen, required method for game
@@ -46,7 +47,7 @@ class Player {
   }
 
   handleInput(key) {
-    if(key == 'up' && this.y > 10) {
+    if(key == 'up' && this.y > 9) {
       this.y -= 20;
     } else if (key == 'right' && this.x < 400) {
       this.x += 20;
@@ -60,13 +61,15 @@ class Player {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-const enemy1 = new Enemy(100,1);
-const enemy2 = new Enemy(-150,50);
-const enemy3 = new Enemy(10,150);
-const enemy4 = new Enemy(-250,225);
-const enemy5 = new Enemy(50,300);
-const enemy6 = new Enemy(-350,300);
-let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+const enemy1 = new Enemy(100,1,1);
+const enemy2 = new Enemy(-150,50,2);
+const enemy3 = new Enemy(-75,50,2.5);
+const enemy4 = new Enemy(10,150,2);
+const enemy5 = new Enemy(-250,225,4.5);
+const enemy6 = new Enemy(-250,225,1);
+const enemy7 = new Enemy(50,300,2);
+const enemy8 = new Enemy(-350,300,3);
+let allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8];
 
 // Return Enemies' position to enemy.x = -150
 function returnPosition() {
@@ -81,18 +84,6 @@ function returnPosition() {
 
 returnPosition();
 
-
-/*
-function moveEnemy() {
-  setInterval(function() {
-    enemy1.x = enemy1.x + 20;
-    enemy2.x = enemy2.x + 50;
-    enemy3.x = enemy3.x + 30;
-  }, 1000);
-}
-
-moveEnemy();
-*/
 
 // Place the player object in a variable called player
 const player = new Player(200,430);
@@ -116,7 +107,7 @@ document.addEventListener('keydown', function(e) {
   allEnemies.forEach(function(enemy) {
     let absX = Math.abs(enemy.x - player.x);
     let absY = Math.abs(enemy.y - player.y);
-    if (absX < 20 && absY < 20) {
+    if (absX < 40 && absY < 40) {
       console.log('Collision!');
     }
   });
